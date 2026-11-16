@@ -11,7 +11,10 @@ const columns = [
   "阈值对比",
   "恢复时间",
   "持续时长",
-  "处置状态"
+  "处置状态",
+  "关联命中编号",
+  "关联规则版本",
+  "关联指标版本"
 ]
 const actions = [
   "确认告警",
@@ -74,7 +77,7 @@ export default function AlarmhistoryView() {
     try {
       const response = await request(`${ENDPOINT}/${row.id}/actions`, {
         method: 'POST',
-        body: JSON.stringify({ action }),
+        body: JSON.stringify({ values: { action } }),
       })
       if (!response.ok) {
         throw new Error('告警历史动作未生效，请稍后重试')
